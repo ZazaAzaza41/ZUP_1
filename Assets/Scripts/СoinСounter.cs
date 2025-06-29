@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-namespace Assets.Scripta
+namespace Assets.Scripts
 {
     public class CoinCounter : MonoBehaviour
     {
