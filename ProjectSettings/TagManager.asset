@@ -7,6 +7,7 @@ TagManager:
   - StartPlatform
   - Platform2
   - Platform3
+  - Platform1
   layers:
   - Default
   - TransparentFX
