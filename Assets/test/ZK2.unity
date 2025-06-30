@@ -212,11 +212,17 @@ MonoBehaviour:
   maxSpeed: 20
   laneChangeSpeed: 10
   laneOffset: 2.65
-  jumpForce: 5
+  liftForce: 100
+  gravityMultiplier: 10
+  flySpeedMultiplier: 1.5
   groundCheckDistance: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  maxFuel: 100
+  fuelBurnRate: 10
+  fuelRegenRate: 5
+  fuelBar: {fileID: 0}
 --- !u!1001 &336367605
 PrefabInstance:
   m_ObjectHideFlags: 0
