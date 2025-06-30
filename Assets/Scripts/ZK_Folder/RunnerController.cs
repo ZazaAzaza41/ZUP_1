@@ -15,7 +15,7 @@ namespace Assets.Scripts.ZK_Folder
         [SerializeField] private float jumpForce = 5f; // Сила прыжка
         [SerializeField] private float groundCheckDistance = 0.01f; // Дистанция для проверки земли
         [SerializeField] private float groundCheckTolerance = 0.05f;
-        [SerializeField] private LayerMask groundLayer; // Слой, который считается землей
+        [SerializeField] private LayerMask groundLayer; // Слой, который считается землей       
 
         private Rigidbody rb;
 
