@@ -22,7 +22,7 @@ public class SpawnObstacles : MonoBehaviour
 
         objectlist = new List<GameObject> { enemyprefab0, enemyprefab1, enemyprefab2 };
         kolobstacles = objectlist.Count;
-        timespawn = 1f;
+        timespawn = 2f;
         livetime = 3.5f;
 
     }
