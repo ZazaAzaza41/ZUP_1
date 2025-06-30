@@ -170,8 +170,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.86484116, y: 0.32853347, z: 1.3358217}
-  m_Center: {x: 0, y: 0.16425985, z: 0}
+  m_Size: {x: 0.86484116, y: 0.425, z: 1.3358217}
+  m_Center: {x: 0, y: 0.15728658, z: -6.564765e-17}
 --- !u!95 &76433980
 Animator:
   serializedVersion: 7
@@ -212,10 +212,8 @@ MonoBehaviour:
   maxSpeed: 20
   laneChangeSpeed: 10
   laneOffset: 2.65
-  jumpHeight: 5
   jumpForce: 5
   groundCheckDistance: 0.5
-  groundCheckTolerance: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
