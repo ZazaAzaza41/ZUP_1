@@ -4,6 +4,7 @@ namespace Assets.Scripts.ZK_Folder
 {
     public class RunnerController : MonoBehaviour
     {
+        public Animator animator;
         public float baseSpeed = 10f;
         public float acceleration = 2f;
         public float maxSpeed = 20f;
@@ -91,10 +92,12 @@ namespace Assets.Scripts.ZK_Folder
             // Обработка смены полосы
             if (Input.GetKeyDown(KeyCode.A))
             {
+                animator.SetTrigger("Lturn");
                 MoveLane(-1);
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
+                animator.SetTrigger("Rturn");
                 MoveLane(1);
             }
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded) // && transform.position.y <= groundLevel + 0.05 Проверка на уровне земли

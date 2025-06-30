@@ -194,6 +194,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &76433981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76433972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5b36ad3825a5541b2c746d11f6a4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 76433980}
+  baseSpeed: 10
+  acceleration: 2
+  maxSpeed: 20
+  laneChangeSpeed: 10
+  laneOffset: 2
+  jumpHeight: 5
+  jumpForce: 5
+  groundCheckDistance: 0.5
+  groundCheckTolerance: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  airControlTime: 0.5
+  airControlFallMultiplier: 0.5
 --- !u!1 &971410376
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +551,14 @@ PrefabInstance:
       propertyPath: jumpHeight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1989158410630149030, guid: 3486418e27fd02f44ba693f206280cbb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232636472388865168, guid: 3486418e27fd02f44ba693f206280cbb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6412556235310801824, guid: 3486418e27fd02f44ba693f206280cbb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.843
@@ -544,7 +579,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 22.118
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 997598638977649754, guid: 3486418e27fd02f44ba693f206280cbb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -557,6 +593,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 780513788615507136, guid: 3486418e27fd02f44ba693f206280cbb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 76433980}
+    - targetCorrespondingSourceObject: {fileID: 780513788615507136, guid: 3486418e27fd02f44ba693f206280cbb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 76433981}
   m_SourcePrefab: {fileID: 100100000, guid: 3486418e27fd02f44ba693f206280cbb, type: 3}
 --- !u!1001 &5360365219108848155
 PrefabInstance:
