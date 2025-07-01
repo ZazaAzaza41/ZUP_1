@@ -1,181 +1,5 @@
-﻿//using UnityEngine;
-//using UnityEngine.UI; // Для работы с UI элементами
-
-//namespace Assets.Scripts.ZK_Folder
-//{
-//    public class RunnerController : MonoBehaviour
-//    {
-//        public Animator animator;
-//        public float baseSpeed = 10f;
-//        public float acceleration = 2f;
-//        public float maxSpeed = 20f;
-//        public float laneChangeSpeed = 15f;
-//        public float laneOffset = 2f;
-//        public float liftForce = 8f;
-//        public float gravityMultiplier = 2f;
-//        public float groundCheckDistance = 0.2f;
-//        public LayerMask groundLayer;
-
-//        public float maxFuel = 100f; // Максимальное количество топлива
-//        public float fuelBurnRate = 10f; // Скорость сжигания топлива в секунду
-//        public float fuelRegenRate = 5f; // Скорость восстановления топлива в секунду
-//        public float flySpeedMultiplier = 1.5f; // Множитель скорости полета
-
-//        public Image fuelBar; // Ссылка на UI Image (Fuel Bar)
-
-//        private Rigidbody rb;
-//        private bool isGrounded;
-//        private float currentSpeed;
-//        private int currentLane = 0;
-//        private float targetPositionX;
-//        private bool isLifting = false;
-//        private float currentFuel;
-//        private bool isFlying = false;
-
-//        private void Awake()
-//        {
-//            rb = GetComponent<Rigidbody>();
-//            rb.freezeRotation = true;
-//        }
-
-//        void Start()
-//        {
-//            currentSpeed = baseSpeed;
-//            targetPositionX = 0f;
-//            currentFuel = maxFuel;
-//            //UpdateFuelUI();
-//        }
-
-//        private void CheckGrounded()
-//        {
-//            Vector3 boxCenter = transform.position;
-//            Vector3 halfExtents = new Vector3(0.2f, 0.1f, 0.2f);
-//            isGrounded = Physics.BoxCast(
-//                boxCenter,
-//                halfExtents,
-//                Vector3.down,
-//                Quaternion.identity,
-//                groundCheckDistance,
-//                groundLayer
-//            );
-//        }
-
-//        void Update()
-//        {
-//            CheckGrounded();
-//            currentSpeed = Mathf.Clamp(currentSpeed + acceleration * Time.deltaTime, baseSpeed, maxSpeed);
-
-//            // Смена полосы
-//            if (Input.GetKeyDown(KeyCode.A))
-//            {
-//                animator.SetTrigger("Lturn");
-//                MoveLane(-1);
-//            }
-//            if (Input.GetKeyDown(KeyCode.D))
-//            {
-//                animator.SetTrigger("Rturn");
-//                MoveLane(1);
-//            }
-
-//            // Подъем/полет
-//            if (Input.GetKey(KeyCode.Space))
-//            {
-//                if (isGrounded)
-//                {
-//                    isLifting = true;
-//                    isFlying = false;
-//                }
-//                else if (currentFuel > 0)
-//                {
-//                    isLifting = false;
-//                    isFlying = true;
-//                }
-//                else
-//                {
-//                    isLifting = false;
-//                    isFlying = false;
-//                }
-//            }
-//            else
-//            {
-//                isLifting = false;
-//                isFlying = false;
-//            }
-
-//            // Управление топливом
-//            if (isFlying)
-//            {
-//                currentFuel -= fuelBurnRate * Time.deltaTime;
-//                currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
-//            }
-//            else if (isGrounded && currentFuel < maxFuel)
-//            {
-//                currentFuel += fuelRegenRate * Time.deltaTime;
-//                currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
-//            }
-
-//            //UpdateFuelUI();
-//        }
-
-//        void FixedUpdate()
-//        {
-//            // Движение вперед
-//            float currentForwardSpeed = currentSpeed;
-//            if (isFlying)
-//            {
-//                currentForwardSpeed *= flySpeedMultiplier;
-//            }
-
-//            Vector3 newVelocity = new Vector3(
-//                (targetPositionX - transform.position.x) * laneChangeSpeed,
-//                rb.linearVelocity.y,
-//                currentForwardSpeed
-//            );
-//            rb.linearVelocity = newVelocity;
-
-//            // Подъем
-//            if (isLifting)
-//            {
-//                rb.AddForce(Vector3.up * liftForce, ForceMode.Acceleration);
-//            }
-
-//            // Полет
-//            if (isFlying)
-//            {
-//                // Поддерживаем высоту во время полета.  Вы можете это изменить, чтобы позволить игроку падать.
-//                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z); // Устанавливаем вертикальную скорость в 0
-//                rb.AddForce(Vector3.up * liftForce, ForceMode.Acceleration); // Поддерживаем высоту
-
-//            }
-
-//            // Дополнительная гравитация
-//            if (!isGrounded && !isFlying) // Не применяем, когда летим.
-//            {
-//                rb.AddForce(Vector3.down * gravityMultiplier, ForceMode.Acceleration);
-//            }
-//        }
-
-//        void MoveLane(int direction)
-//        {
-//            currentLane = Mathf.Clamp(currentLane + direction, -1, 1);
-//            targetPositionX = currentLane * laneOffset;
-//        }
-
-//        //void UpdateFuelUI()
-//        //{
-//        //    if (fuelBar != null)
-//        //    {
-//        //        fuelBar.fillAmount = currentFuel / maxFuel;
-//        //    }
-//        //}
-//    }
-//}
-
-
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor; // Только для Editor скриптов
 using System;
 
 namespace Assets.Scripts.ZK_Folder
@@ -217,13 +41,21 @@ namespace Assets.Scripts.ZK_Folder
         [Tooltip("Максимальное количество топлива")]
         public float maxFuel = 100f;
         [Tooltip("Скорость сжигания топлива в секунду во время полета")]
-        [Range(0f, 20f)] // Ограничиваем значение в пределах 0-20
+        [Range(0f, 20f)]
         public float fuelBurnRate = 10f;
         [Tooltip("Скорость восстановления топлива в секунду на земле")]
-        [Range(0f, 10f)] // Ограничиваем значение в пределах 0-10
-        public float fuelRegenRate = 5f;
+        [Range(0f, 50f)]
+        public float fuelRegenRate = 25f;
         [Tooltip("Ссылка на UI Image, отображающий шкалу топлива")]
         public Image fuelBar;
+
+        [Header("Ограничение Полета")]
+        [Tooltip("Высота Y, после которой топливо начинает быстро тратиться")]
+        public float flightRestrictionY = 10f;
+        [Tooltip("Множитель скорости сжигания топлива за пределами зоны")]
+        public float outOfBoundsFuelBurnMultiplier = 5f;
+        //[Tooltip("Штрафная скорость, когда заканчивается топливо")]
+        //public float noFuelSpeedPenalty = 0.5f; // 0.5f - 50% от текущей скорости
 
         private Rigidbody rb;
         private bool isGrounded;
@@ -233,6 +65,7 @@ namespace Assets.Scripts.ZK_Folder
         private bool isLifting = false;
         private float currentFuel;
         private bool isFlying = false;
+        private bool outOfBounds = false;
 
         private void Awake()
         {
@@ -279,24 +112,14 @@ namespace Assets.Scripts.ZK_Folder
                 MoveLane(1);
             }
 
-            // Подъем/Полет
-            if (Input.GetKey(KeyCode.Space))
+            // Проверка, находится ли игрок за границей (по высоте)
+            outOfBounds = transform.position.y > flightRestrictionY;
+
+            // Прыжок / Полет
+            if (Input.GetKey(KeyCode.Space) && currentFuel > 0)
             {
-                if (isGrounded)
-                {
-                    isLifting = true;
-                    isFlying = false;
-                }
-                else if (currentFuel > 0)
-                {
-                    isLifting = false;
-                    isFlying = true;
-                }
-                else
-                {
-                    isLifting = false;
-                    isFlying = false;
-                }
+                isLifting = true;
+                isFlying = true;
             }
             else
             {
@@ -305,61 +128,69 @@ namespace Assets.Scripts.ZK_Folder
             }
 
             // Управление топливом
-            if (isFlying)
-            {
-                currentFuel -= fuelBurnRate * Time.deltaTime;
-                currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
-            }
-            else if (isGrounded && currentFuel < maxFuel)
-            {
-                currentFuel += fuelRegenRate * Time.deltaTime;
-                currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
-            }
+            HandleFuel();
 
-            UpdateFuelUI();
+            UpdateFuelUI(); // Обновляем UI в каждом кадре
+
+            // Анимация полета---------------------------------------------------------------------------
+            //animator.SetBool("isFlying", isFlying);
         }
 
         void FixedUpdate()
         {
+            // Движение по полосам
+
             // Движение вперед
-            float currentForwardSpeed = currentSpeed;
-            if (isFlying)
-            {
-                currentForwardSpeed *= flySpeedMultiplier;
-            }
+            Vector3 forwardMovement = transform.forward * currentSpeed * Time.fixedDeltaTime;
 
-            Vector3 newVelocity = new Vector3(
-                (targetPositionX - transform.position.x) * laneChangeSpeed,
-                rb.linearVelocity.y,
-                currentForwardSpeed
-            );
-            rb.linearVelocity = newVelocity;
-
-            // Подъем
+            // Применение подъема (полета)
             if (isLifting)
             {
-                rb.AddForce(Vector3.up * liftForce, ForceMode.Acceleration);
+                rb.AddForce(Vector3.up * liftForce);
+                forwardMovement *= flySpeedMultiplier; // Увеличиваем скорость вперед во время полета
             }
 
-            // Полет
-            if (isFlying)
+            // Применение гравитации
+            if (!isGrounded)
             {
-                // Поддерживаем высоту во время полета.  Вы можете это изменить, чтобы позволить игроку падать.
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z); // Устанавливаем вертикальную скорость в 0
-                rb.AddForce(Vector3.up * liftForce, ForceMode.Acceleration); // Поддерживаем высоту
+                rb.AddForce(Vector3.down * Physics.gravity.y * gravityMultiplier * Time.fixedDeltaTime);
             }
 
-            // Дополнительная гравитация
-            if (!isGrounded && !isFlying) // Не применяем, когда летим.
-            {
-                rb.AddForce(Vector3.down * gravityMultiplier, ForceMode.Acceleration);
-            }
+            rb.MovePosition(rb.position + forwardMovement);
+
+            Vector3 newPosition = rb.position;
+            newPosition.x = Mathf.MoveTowards(rb.position.x, targetPositionX, laneChangeSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(newPosition);
+
         }
 
         void MoveLane(int direction)
         {
-            currentLane = Mathf.Clamp(currentLane + direction, -1, 1);
+            currentLane += direction;
+            currentLane = Mathf.Clamp(currentLane, -1, 1); // Ограничиваем полосы (-1, 0, 1)
             targetPositionX = currentLane * laneOffset;
+        }
+
+        void HandleFuel()
+        {
+            if (isFlying)
+            {
+                float burnRate = fuelBurnRate;
+
+                // Увеличиваем расход топлива за границей
+                if (outOfBounds)
+                {
+                    burnRate *= outOfBoundsFuelBurnMultiplier;
+                }
+
+                currentFuel -= burnRate * Time.deltaTime;
+                currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
+            }
+            else if (isGrounded)
+            {
+                currentFuel += fuelRegenRate * Time.deltaTime;
+                currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
+            }
         }
 
         void UpdateFuelUI()
