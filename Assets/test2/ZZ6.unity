@@ -176,6 +176,80 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41fd451f02b13d34aaf199b3df429767, type: 3}
+--- !u!1001 &341188837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1178346002242179966, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 796737122}
+    - target: {fileID: 1178346002242179966, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: enemyprefab1
+      value: 
+      objectReference: {fileID: 7565662727772015394, guid: f870be6a2ff3b994584b6cfcb0f296a6, type: 3}
+    - target: {fileID: 1178346002242179966, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: enemyprefab2
+      value: 
+      objectReference: {fileID: 182451306983798194, guid: 606789fe846bf934caf5108410a133e4, type: 3}
+    - target: {fileID: 1179445604520293881, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_Name
+      value: GameObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.69483
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.92075
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533659020897200747, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+--- !u!1 &796737122 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8286709450983755919, guid: 297666dd259f72f4cb2c1c7d738c3db6, type: 3}
+  m_PrefabInstance: {fileID: 2515690802971604149}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &942646507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -720,8 +794,12 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 821517248589115716, guid: 297666dd259f72f4cb2c1c7d738c3db6, type: 3}
+      propertyPath: baseSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 821517248589115716, guid: 297666dd259f72f4cb2c1c7d738c3db6, type: 3}
       propertyPath: liftForce
-      value: 12
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 821517248589115716, guid: 297666dd259f72f4cb2c1c7d738c3db6, type: 3}
       propertyPath: laneChangeSpeed
@@ -791,3 +869,4 @@ SceneRoots:
   - {fileID: 942646507}
   - {fileID: 1699338210}
   - {fileID: 1023189006}
+  - {fileID: 341188837}
