@@ -57,6 +57,7 @@ namespace Assets.Scripts.ZK_Folder
         //[Tooltip("Штрафная скорость, когда заканчивается топливо")]
         //public float noFuelSpeedPenalty = 0.5f; // 0.5f - 50% от текущей скорости
 
+
         private Rigidbody rb;
         private bool isGrounded;
         private float currentSpeed;
