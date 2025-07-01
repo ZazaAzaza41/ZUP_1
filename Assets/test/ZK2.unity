@@ -854,8 +854,52 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8286709450983755919, guid: 297666dd259f72f4cb2c1c7d738c3db6, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2515690802971604152}
   m_SourcePrefab: {fileID: 100100000, guid: 297666dd259f72f4cb2c1c7d738c3db6, type: 3}
+--- !u!1 &2515690802971604150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8286709450983755919, guid: 297666dd259f72f4cb2c1c7d738c3db6, type: 3}
+  m_PrefabInstance: {fileID: 2515690802971604149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2515690802971604151 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3214218186157987678, guid: 297666dd259f72f4cb2c1c7d738c3db6, type: 3}
+  m_PrefabInstance: {fileID: 2515690802971604149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2515690802971604152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515690802971604150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195be87b071359641953a86b65a989ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2515690802971604151}
+  baseSpeed: 10
+  acceleration: 2
+  maxSpeed: 20
+  laneChangeSpeed: 15
+  laneOffset: 2.65
+  liftForce: 12
+  gravityMultiplier: 10
+  flySpeedMultiplier: 1.5
+  groundCheckDistance: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  maxFuel: 100
+  fuelBurnRate: 10
+  fuelRegenRate: 25
+  fuelBar: {fileID: 1317853438}
+  flightRestrictionY: 7
+  outOfBoundsFuelBurnMultiplier: 33.3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
