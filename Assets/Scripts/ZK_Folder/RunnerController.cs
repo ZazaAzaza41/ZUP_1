@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting; // ВАЖНО: Проверьте, нужен ли этот using (возможно, нет)
 
 namespace Assets.Scripts.ZK_Folder
 {
@@ -12,7 +13,7 @@ namespace Assets.Scripts.ZK_Folder
 
         [Header("Движение")]
         [Tooltip("Базовая скорость движения вперед")]
-        public float baseSpeed = 10f;
+        public float baseSpeed = 0f;
         [Tooltip("Ускорение корабля")]
         public float acceleration = 2f;
         [Tooltip("Максимальная скорость корабля")]
@@ -57,6 +58,13 @@ namespace Assets.Scripts.ZK_Folder
         //[Tooltip("Штрафная скорость, когда заканчивается топливо")]
         //public float noFuelSpeedPenalty = 0.5f; // 0.5f - 50% от текущей скорости
 
+        [Header("Кнопки из Меню")]
+        public Button startButton;
+        public Button exitButton;
+        public Button settingsButton;
+        public Toggle staticCamera;
+        public Button backButton;
+
 
         private Rigidbody rb;
         private bool isGrounded;
@@ -67,6 +75,7 @@ namespace Assets.Scripts.ZK_Folder
         private float currentFuel;
         private bool isFlying = false;
         private bool outOfBounds = false;
+        private bool gameStarted = false; // Добавляем флаг для отслеживания состояния игры
 
         private void Awake()
         {
@@ -79,7 +88,22 @@ namespace Assets.Scripts.ZK_Folder
             currentSpeed = baseSpeed;
             targetPositionX = 0f;
             currentFuel = maxFuel;
-            UpdateFuelUI();
+
+            if (startButton != null)
+            {
+                startButton.onClick.AddListener(StartGame);
+            }
+            currentSpeed = 0f;
+            rb.linearVelocity = Vector3.zero;  // Гасим скорость полностью.
+            rb.isKinematic = true; //Отключаем физику до старта
+        }
+
+        // Метод, который будет вызван при нажатии на кнопку "Старт"
+        void StartGame()
+        {
+            gameStarted = true; // Устанавливаем флаг, что игра началась
+            currentSpeed = baseSpeed;  // Возвращаем базовую скорость
+            rb.isKinematic = false; //Включаем физику
         }
 
         private void CheckGrounded()
@@ -98,6 +122,12 @@ namespace Assets.Scripts.ZK_Folder
 
         void Update()
         {
+            // Если игра не началась, выходим из Update()
+            if (!gameStarted)
+            {
+                return;
+            }
+
             CheckGrounded();
             currentSpeed = Mathf.Clamp(currentSpeed + acceleration * Time.deltaTime, baseSpeed, maxSpeed);
 
@@ -116,90 +146,72 @@ namespace Assets.Scripts.ZK_Folder
             // Проверка, находится ли игрок за границей (по высоте)
             outOfBounds = transform.position.y > flightRestrictionY;
 
-            // Прыжок / Полет
-            if (Input.GetKey(KeyCode.Space) && currentFuel > 0)
+            // Прыжок/Полет (теперь работает только после нажатия кнопки "Старт")
+            isLifting = Input.GetKey(KeyCode.Space);
+
+            // Обновление топлива
+            if (isGrounded)
             {
-                isLifting = true;
-                isFlying = true;
+                currentFuel = Mathf.Clamp(currentFuel + fuelRegenRate * Time.deltaTime, 0f, maxFuel);
             }
             else
             {
-                isLifting = false;
-                isFlying = false;
+                float burnRate = fuelBurnRate;
+                if (outOfBounds)
+                {
+                    burnRate *= outOfBoundsFuelBurnMultiplier;
+                }
+                currentFuel = Mathf.Clamp(currentFuel - burnRate * Time.deltaTime, 0f, maxFuel);
             }
 
-            // Управление топливом
-            HandleFuel();
+            // Обновление UI шкалы топлива
+            if (fuelBar != null)
+            {
+                fuelBar.fillAmount = currentFuel / maxFuel;
+            }
 
-            UpdateFuelUI(); // Обновляем UI в каждом кадре
+            // Управление скоростью (с учетом топлива)
+            //if (currentFuel <= 0f)
+            //{
+            //    currentSpeed *= noFuelSpeedPenalty;
+            //}
 
-            // Анимация полета---------------------------------------------------------------------------
-            //animator.SetBool("isFlying", isFlying);
+            // Анимация
+            //animator.SetFloat("Speed", currentSpeed);
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
-            // Движение по полосам
-
-            // Движение вперед
-            Vector3 forwardMovement = transform.forward * currentSpeed * Time.fixedDeltaTime;
-
-            // Применение подъема (полета)
-            if (isLifting)
+            // Движение вперед (теперь работает только после нажатия кнопки "Старт")
+            if (gameStarted)
             {
-                rb.AddForce(Vector3.up * liftForce);
-                forwardMovement *= flySpeedMultiplier; // Увеличиваем скорость вперед во время полета
+                Vector3 moveDirection = Vector3.forward * currentSpeed * Time.fixedDeltaTime;
+                rb.MovePosition(rb.position + moveDirection);
+
+                // Боковое движение
+                float newX = Mathf.MoveTowards(rb.position.x, targetPositionX, laneChangeSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(new Vector3(newX, rb.position.y, rb.position.z));
+
+                // Прыжок/Полет
+                if (isLifting && currentFuel > 0f)
+                {
+                    float currentLiftForce = liftForce;
+                    if (!isGrounded)
+                    {
+                        currentLiftForce *= flySpeedMultiplier;
+                    }
+                    rb.AddForce(Vector3.up * currentLiftForce);
+                }
+                // Увеличение гравитации для более быстрого падения
+                rb.AddForce(Vector3.down * gravityMultiplier);
             }
-
-            // Применение гравитации
-            if (!isGrounded)
-            {
-                rb.AddForce(Vector3.down * Physics.gravity.y * gravityMultiplier * Time.fixedDeltaTime);
-            }
-
-            rb.MovePosition(rb.position + forwardMovement);
-
-            Vector3 newPosition = rb.position;
-            newPosition.x = Mathf.MoveTowards(rb.position.x, targetPositionX, laneChangeSpeed * Time.fixedDeltaTime);
-            rb.MovePosition(newPosition);
-
         }
 
         void MoveLane(int direction)
         {
             currentLane += direction;
-            currentLane = Mathf.Clamp(currentLane, -1, 1); // Ограничиваем полосы (-1, 0, 1)
+            currentLane = Mathf.Clamp(currentLane, -1, 1);
             targetPositionX = currentLane * laneOffset;
-        }
-
-        void HandleFuel()
-        {
-            if (isFlying)
-            {
-                float burnRate = fuelBurnRate;
-
-                // Увеличиваем расход топлива за границей
-                if (outOfBounds)
-                {
-                    burnRate *= outOfBoundsFuelBurnMultiplier;
-                }
-
-                currentFuel -= burnRate * Time.deltaTime;
-                currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
-            }
-            else if (isGrounded)
-            {
-                currentFuel += fuelRegenRate * Time.deltaTime;
-                currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
-            }
-        }
-
-        void UpdateFuelUI()
-        {
-            if (fuelBar != null)
-            {
-                fuelBar.fillAmount = currentFuel / maxFuel;
-            }
         }
     }
 }

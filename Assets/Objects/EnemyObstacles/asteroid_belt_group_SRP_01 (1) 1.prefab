@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5737701398279948151}
   - component: {fileID: -449820268330763922}
-  - component: {fileID: 2449131653042531778}
+  - component: {fileID: -8354948430103464492}
+  - component: {fileID: 4016268900290684408}
   m_Layer: 0
   m_Name: asteroid_belt_group_SRP_01 (1) 1
   m_TagString: Obstacle
@@ -26,14 +27,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182451306983798194}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.52900726, y: -0.2511312, z: 0.69945973, w: -0.4096835}
+  m_LocalRotation: {x: 0.3767731, y: 0.6829034, z: 0.2931794, w: -0.5529294}
   m_LocalPosition: {x: -9.21, y: 0.5, z: -26.673204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 926585890398198950}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -231.699, y: 120.457, z: 29.735}
+  m_LocalEulerAnglesHint: {x: -125.206, y: 67.929, z: 199.283}
 --- !u!114 &-449820268330763922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,8 +47,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514989fe1ab0bb143906088bb22a5be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &2449131653042531778
-CapsuleCollider:
+--- !u!95 &-8354948430103464492
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182451306983798194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dbec406f7af5ff94f9f1e591fa77c5b7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &4016268900290684408
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -64,11 +87,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.61938256
-  m_Height: 2.6457884
-  m_Direction: 1
-  m_Center: {x: 0.02432739, y: 0.94386584, z: -0.054504845}
+  serializedVersion: 3
+  m_Size: {x: 1.099527, y: 0.8580418, z: 2.3122454}
+  m_Center: {x: 0.04007268, y: -0.8814948, z: -0.035814945}
 --- !u!1 &7270430707430671806
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,13 +116,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7270430707430671806}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.550141, y: -0.7451655, z: 0.22387463, w: -0.30323827}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: 0.23931888, y: -0.74108, z: -0.1406582, w: -0.6113446}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 4.5822587, y: 2.215, z: 1.40628}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5737701398279948151}
-  m_LocalEulerAnglesHint: {x: 0, y: -224.287, z: -72.875}
+  m_LocalEulerAnglesHint: {x: -30.072, y: -255.755, z: -12.19}
 --- !u!33 &660985275765537973
 MeshFilter:
   m_ObjectHideFlags: 0

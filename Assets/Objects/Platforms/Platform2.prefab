@@ -65,7 +65,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< HEAD
+  - {fileID: 2100000, guid: 7f22674a8966fd7488e4cfb7d836fa9a, type: 2}
+=======
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> parent of 7f9f185 (gotovi platformi(prozrachnie)+normalize all)
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,7 +178,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< HEAD
+  - {fileID: 2100000, guid: ed006da070722c24f81a12ec739d889c, type: 2}
+=======
   - {fileID: 2100000, guid: dfae28bc244a7714ead698fa20377a31, type: 2}
+>>>>>>> parent of 7f9f185 (gotovi platformi(prozrachnie)+normalize all)
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
