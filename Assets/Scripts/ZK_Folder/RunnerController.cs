@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
-using Unity.VisualScripting; // ВАЖНО: Проверьте, нужен ли этот using (возможно, нет)
+using Unity.VisualScripting;
 
 namespace Assets.Scripts.ZK_Folder
 {
@@ -58,6 +58,12 @@ namespace Assets.Scripts.ZK_Folder
         //[Tooltip("Штрафная скорость, когда заканчивается топливо")]
         //public float noFuelSpeedPenalty = 0.5f; // 0.5f - 50% от текущей скорости
 
+        [Header("HP")]
+        [Tooltip("Максимальное количество HP")]
+        public float maxHP = 3f;
+        [Tooltip("Ссылка на UI Image, отображающий шкалу HP")]
+        public Image HPBar;
+
         [Header("Кнопки из Меню")]
         public Button startButton;
         public Button exitButton;
@@ -73,9 +79,10 @@ namespace Assets.Scripts.ZK_Folder
         private float targetPositionX;
         private bool isLifting = false;
         private float currentFuel;
+        private float currentHP;
         private bool isFlying = false;
         private bool outOfBounds = false;
-        private bool gameStarted = false; // Добавляем флаг для отслеживания состояния игры
+        private bool gameStarted = false;
 
         private void Awake()
         {
@@ -88,6 +95,9 @@ namespace Assets.Scripts.ZK_Folder
             currentSpeed = baseSpeed;
             targetPositionX = 0f;
             currentFuel = maxFuel;
+            currentHP = maxHP;
+            UpdateFuelUI();
+            UpdateHPUI();
 
             if (startButton != null)
             {
@@ -118,6 +128,14 @@ namespace Assets.Scripts.ZK_Folder
                 groundCheckDistance,
                 groundLayer
             );
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Obstacle"))
+            {
+                ChangeHP();
+            }
         }
 
         void Update()
@@ -176,6 +194,12 @@ namespace Assets.Scripts.ZK_Folder
             //    currentSpeed *= noFuelSpeedPenalty;
             //}
 
+            HandleFuel();
+
+            UpdateFuelUI();
+
+            UpdateHPUI();
+
             // Анимация
             //animator.SetFloat("Speed", currentSpeed);
         }
@@ -212,6 +236,47 @@ namespace Assets.Scripts.ZK_Folder
             currentLane += direction;
             currentLane = Mathf.Clamp(currentLane, -1, 1);
             targetPositionX = currentLane * laneOffset;
+        }
+
+        void HandleFuel()
+        {
+            if (isFlying)
+            {
+                float burnRate = fuelBurnRate;
+
+                // Увеличиваем расход топлива за границей
+                if (outOfBounds)
+                {
+                    burnRate *= outOfBoundsFuelBurnMultiplier;
+                }
+
+                currentFuel -= burnRate * Time.deltaTime;
+                currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
+            }
+            else if (isGrounded)
+            {
+                currentFuel += fuelRegenRate * Time.deltaTime;
+                currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
+            }
+        }
+
+        public void ChangeHP()
+        {
+            currentHP -= 1f;
+        }
+        void UpdateFuelUI()
+        {
+            if (fuelBar != null)
+            {
+                fuelBar.fillAmount = currentFuel / maxFuel;
+            }
+        }
+        void UpdateHPUI()
+        {
+            if (HPBar != null)
+            {
+                HPBar.fillAmount = currentHP / maxHP;
+            }
         }
     }
 }
