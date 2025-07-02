@@ -271,6 +271,18 @@ PrefabInstance:
       propertyPath: enemyprefab2
       value: 
       objectReference: {fileID: 182451306983798194, guid: 606789fe846bf934caf5108410a133e4, type: 3}
+    - target: {fileID: 1178346002242179966, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: enemyprefab3
+      value: 
+      objectReference: {fileID: 182451306983798194, guid: c7cd37efe3dcd2440bf042aaa7710b68, type: 3}
+    - target: {fileID: 1178346002242179966, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: enemyprefab1_2
+      value: 
+      objectReference: {fileID: 7565662727772015394, guid: 96fb977ae53b17b4f8e5d79523c5bdb2, type: 3}
+    - target: {fileID: 1178346002242179966, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
+      propertyPath: enemyprefab2_2
+      value: 
+      objectReference: {fileID: 182451306983798194, guid: 9af5aaebbca27f74d858ec6750fee688, type: 3}
     - target: {fileID: 1179445604520293881, guid: e87266f07d6158d47ac46e8896cadeea, type: 3}
       propertyPath: m_Name
       value: GameObject
@@ -348,8 +360,8 @@ MonoBehaviour:
   maxSpeed: 20
   laneChangeSpeed: 10
   laneOffset: 2.65
-  liftForce: 18
-  gravityMultiplier: 10
+  liftForce: 25
+  gravityMultiplier: 1
   flySpeedMultiplier: 1.5
   groundCheckDistance: 0.5
   groundLayer:
@@ -483,7 +495,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64c134885848be64e9313fda595c5a8f, type: 2}
+  - {fileID: 2100000, guid: 7f22674a8966fd7488e4cfb7d836fa9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
