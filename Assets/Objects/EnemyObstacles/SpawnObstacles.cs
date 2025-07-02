@@ -41,8 +41,9 @@ public class SpawnObstacles : MonoBehaviour
     {
         int obj;
         obj = 0;
-        float x = UnityEngine.Random.Range(1f, 4f);
-        if (x == 1)
+        int xx = UnityEngine.Random.Range(1, 4);
+        float x;
+        if (xx == 1)
         {
             x = -2.65f;
             GameObject spawnedObject = Instantiate(objectlist[obj], new Vector3(x, UnityEngine.Random.Range(y, miny), z), Quaternion.identity, transform);
@@ -65,7 +66,7 @@ public class SpawnObstacles : MonoBehaviour
             Destroy(spawnedObject2, livetime + timespawn - 0.1f);
 
         }
-        else if (x == 2)
+        else if (xx == 2)
         {
             x = 0;
             GameObject spawnedObject = Instantiate(objectlist[obj], new Vector3(x, UnityEngine.Random.Range(y, miny), z), Quaternion.identity, transform);
@@ -74,7 +75,7 @@ public class SpawnObstacles : MonoBehaviour
             GameObject spawnedObject2 = Instantiate(objectlist[obj], new Vector3(-2.65f, UnityEngine.Random.Range(y, miny), z), Quaternion.identity, transform);
             Destroy(spawnedObject2, livetime + timespawn - 0.1f);
             obj = UnityEngine.Random.Range(0, kolobstacles);
-            GameObject spawnedObject3 = Instantiate(objectlist[obj], new Vector3(2.65f, UnityEngine.Random.Range(y, miny), player.transform.position.z), Quaternion.identity, transform);
+            GameObject spawnedObject3 = Instantiate(objectlist[obj], new Vector3(2.65f, UnityEngine.Random.Range(y, miny), z), Quaternion.identity, transform);
             Destroy(spawnedObject3, livetime + timespawn - 0.1f);
 
             obj = UnityEngine.Random.Range(0, kolobstacles);
@@ -84,7 +85,7 @@ public class SpawnObstacles : MonoBehaviour
             GameObject spawnedObject22 = Instantiate(objectlist[obj], new Vector3(-2.65f, y +UnityEngine.Random.Range(miny, maxy), z), Quaternion.identity, transform);
             Destroy(spawnedObject2, livetime + timespawn - 0.1f);
             obj = UnityEngine.Random.Range(0, kolobstacles);
-            GameObject spawnedObject33 = Instantiate(objectlist[obj], new Vector3(2.65f, y +UnityEngine.Random.Range(miny, maxy), player.transform.position.z), Quaternion.identity, transform);
+            GameObject spawnedObject33 = Instantiate(objectlist[obj], new Vector3(2.65f, y +UnityEngine.Random.Range(miny, maxy), z), Quaternion.identity, transform);
             Destroy(spawnedObject3, livetime + timespawn - 0.1f);
         }
         else
