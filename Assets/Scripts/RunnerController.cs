@@ -70,16 +70,6 @@ namespace Assets.Scripts
         public GameObject frameGameUI;
         public GameObject framePause;
 
-
-        private bool isgamestop;
-
-        [Header("Настройки вращения при завершении игры")]
-        public float rotationSpeed; // Градусов в секунду
-        public Vector3 rotationAxis; // Ось вращения (по умолчанию вверх)
-
-        [Header("Настройки движения при завершении игры")]
-        public float descendSpeed; // Скорость опускания (единиц в секунду)
-
         private Rigidbody rb;
         private bool isGrounded;
         private float currentSpeed;
@@ -94,10 +84,6 @@ namespace Assets.Scripts
 
         private void Awake()
         {
-            isgamestop = false;
-            rotationSpeed = 900f;
-            rotationAxis = Vector3.up;
-            descendSpeed = 2f;
 
             rb = GetComponent<Rigidbody>();
             //rb.freezeRotation = true;
@@ -121,7 +107,7 @@ namespace Assets.Scripts
             flightRestrictionY = 7;
             outOfBoundsFuelBurnMultiplier = 33.3f;
 
-            maxHP = 3f;
+            maxHP = 5f;
         }
 
         void Start()
@@ -169,6 +155,16 @@ namespace Assets.Scripts
             if (other.CompareTag("Obstacle"))
             {
                 ChangeHP();
+                int anim = UnityEngine.Random.Range(1, 3);
+                if (anim == 1)
+                {
+                    animator.SetTrigger("Collision");
+                }
+                else
+                {
+                    animator.SetTrigger("Collision2");
+                }
+                
             }
         }
         void GameStop()
@@ -180,15 +176,10 @@ namespace Assets.Scripts
         }
         void Update()
         {
-            if (isgamestop)
+            if (currentHP <= 0)
             {
-                //transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
-                //transform.Translate(Vector3.down * descendSpeed * Time.deltaTime, Space.World);
-            }
-            if (currentHP <= 0 && !isgamestop)
-            {
-                isgamestop = true;
-                Invoke("GameStop", 3f);
+                animator.SetTrigger("Lose");
+                Invoke("GameStop", 2f);
                 
             }
             // Если игра не началась, выходим из Update()

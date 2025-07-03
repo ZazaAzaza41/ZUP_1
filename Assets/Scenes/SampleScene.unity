@@ -3619,6 +3619,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1923757059891605278, guid: 8c70b2b2d960e824696a608e86549c1a, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2418306267991106634, guid: 8c70b2b2d960e824696a608e86549c1a, type: 3}
       propertyPath: m_Name
       value: Spaceship 2
