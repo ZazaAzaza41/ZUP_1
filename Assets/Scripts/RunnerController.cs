@@ -66,9 +66,11 @@ namespace Assets.Scripts
 
         [Header("Кнопки из Меню")]
         public Button startButton;
-        public Button pauseButton;
-        public Button resumeButton;
-        public GameObject pauseMenu;
+        public GameObject frameGameOver;
+        public GameObject frameGameUI;
+        public GameObject framePause;
+
+
 
 
 
@@ -124,10 +126,6 @@ namespace Assets.Scripts
             {
                 startButton.onClick.AddListener(StartGame);
             }
-            if (pauseButton != null)
-            {
-                pauseButton.onClick.AddListener(PauseGame);
-            }
             currentSpeed = 0f;
             rb.linearVelocity = Vector3.zero;  // Гасим скорость полностью.
             rb.isKinematic = true; //Отключаем физику до старта
@@ -165,6 +163,13 @@ namespace Assets.Scripts
 
         void Update()
         {
+            if (currentHP <= 0)
+            {
+                frameGameUI.SetActive(false);
+                framePause.SetActive(false);
+                frameGameOver.SetActive(true);
+                Time.timeScale = 0f;
+            }
             // Если игра не началась, выходим из Update()
             if (!gameStarted)
             {
@@ -285,10 +290,6 @@ namespace Assets.Scripts
             }
         }
 
-        void PauseGame()
-        { 
-            //
-        }
         public void ChangeHP()
         {
             currentHP -= 1f;
