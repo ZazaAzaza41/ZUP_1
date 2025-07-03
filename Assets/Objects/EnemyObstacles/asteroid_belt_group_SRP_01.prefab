@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514989fe1ab0bb143906088bb22a5be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacle: {fileID: 7565662727772015394}
 --- !u!135 &204632738312202699
 SphereCollider:
   m_ObjectHideFlags: 0

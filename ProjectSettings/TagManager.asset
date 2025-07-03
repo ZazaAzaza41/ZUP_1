@@ -9,6 +9,7 @@ TagManager:
   - Platform3
   - Platform1
   - Obstacle
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Empty
   - 
   - 
   - 

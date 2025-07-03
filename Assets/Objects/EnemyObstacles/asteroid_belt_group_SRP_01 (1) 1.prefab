@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514989fe1ab0bb143906088bb22a5be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacle: {fileID: 182451306983798194}
 --- !u!95 &-8354948430103464492
 Animator:
   serializedVersion: 7
