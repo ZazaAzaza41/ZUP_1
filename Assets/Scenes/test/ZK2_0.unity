@@ -2179,7 +2179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131745b180ef1ba429f6d560ba998cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 40
+  rotationSpeed: 65
   startButton: {fileID: 1385296773}
   gameUI: {fileID: 1351159197}
   gamePause: {fileID: 201229896}

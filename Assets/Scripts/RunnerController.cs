@@ -66,10 +66,10 @@ namespace Assets.Scripts
 
         [Header("Кнопки из Меню")]
         public Button startButton;
-        public Button exitButton;
-        public Button settingsButton;
-        public Toggle staticCamera;
-        public Button backButton;
+        public Button pauseButton;
+        public Button resumeButton;
+        public GameObject pauseMenu;
+
 
 
         private Rigidbody rb;
@@ -123,6 +123,10 @@ namespace Assets.Scripts
             if (startButton != null)
             {
                 startButton.onClick.AddListener(StartGame);
+            }
+            if (pauseButton != null)
+            {
+                pauseButton.onClick.AddListener(PauseGame);
             }
             currentSpeed = 0f;
             rb.linearVelocity = Vector3.zero;  // Гасим скорость полностью.
@@ -281,6 +285,10 @@ namespace Assets.Scripts
             }
         }
 
+        void PauseGame()
+        { 
+            //
+        }
         public void ChangeHP()
         {
             currentHP -= 1f;
