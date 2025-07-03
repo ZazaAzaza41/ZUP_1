@@ -71,8 +71,14 @@ namespace Assets.Scripts
         public GameObject framePause;
 
 
+        private bool isgamestop;
 
+        [Header("Настройки вращения при завершении игры")]
+        public float rotationSpeed; // Градусов в секунду
+        public Vector3 rotationAxis; // Ось вращения (по умолчанию вверх)
 
+        [Header("Настройки движения при завершении игры")]
+        public float descendSpeed; // Скорость опускания (единиц в секунду)
 
         private Rigidbody rb;
         private bool isGrounded;
@@ -88,8 +94,13 @@ namespace Assets.Scripts
 
         private void Awake()
         {
+            isgamestop = false;
+            rotationSpeed = 900f;
+            rotationAxis = Vector3.up;
+            descendSpeed = 2f;
+
             rb = GetComponent<Rigidbody>();
-            rb.freezeRotation = true;
+            //rb.freezeRotation = true;
 
             baseSpeed = 10;
             acceleration = 2f;
@@ -160,15 +171,25 @@ namespace Assets.Scripts
                 ChangeHP();
             }
         }
-
+        void GameStop()
+        {
+            frameGameUI.SetActive(false);
+            framePause.SetActive(false);
+            frameGameOver.SetActive(true);
+            Time.timeScale = 0f;
+        }
         void Update()
         {
-            if (currentHP <= 0)
+            if (isgamestop)
             {
-                frameGameUI.SetActive(false);
-                framePause.SetActive(false);
-                frameGameOver.SetActive(true);
-                Time.timeScale = 0f;
+                //transform.Rotate(rotationAxis * rotationSpeed * Time.deltaTime);
+                //transform.Translate(Vector3.down * descendSpeed * Time.deltaTime, Space.World);
+            }
+            if (currentHP <= 0 && !isgamestop)
+            {
+                isgamestop = true;
+                Invoke("GameStop", 3f);
+                
             }
             // Если игра не началась, выходим из Update()
             if (!gameStarted)
