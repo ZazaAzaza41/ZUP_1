@@ -38,9 +38,6 @@ public class ParticleControll : MonoBehaviour
         {
             Debug.LogError("ParticleRight не назначен!");
         }
-
-        colorModuleR = ParticleRight.colorOverLifetime;
-        colorModuleR.color = releasedGradient;
     }
 
 
