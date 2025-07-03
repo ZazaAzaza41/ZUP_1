@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: CT_  fukong01
   m_Shader: {fileID: 4800000, guid: 61b58c3f0532c23499799ef52d10d600, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _BLACKISTRANSPARENT_ON
@@ -26,6 +28,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -268,7 +271,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorIntensity: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionBlackColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 2.8898866, b: 6.4980206, a: 1}
+    - _EmissionColor: {r: 0.4623672, g: 0, b: 6.4980216, a: 1}
     - _EmissionWhiteColor: {r: 1, g: 1, b: 1, a: 1}
     - _FinalEmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Flow1Color: {r: 1, g: 1, b: 1, a: 1}
@@ -283,3 +286,4 @@ Material:
     - _SpeedXY: {r: 0, g: 0, b: 0, a: 0}
     - _TillingXY: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
