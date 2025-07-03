@@ -7,31 +7,43 @@ namespace Assets.Scripts
     {
 
         private int coinCount = 0;
-        public TextMeshProUGUI coinText;
+        //public TextMeshProUGUI coinText;
 
         public AudioClip coinSound;
         private AudioSource audioSource;
 
         void Start()
         {
-            UpdateCoinText();
+            //UpdateCoinText();
             audioSource = gameObject.AddComponent<AudioSource>();
         }
 
         public void AddCoin()
         {
-            coinCount++;
-            UpdateCoinText();
+            
+            if (PlayerPrefs.HasKey("money"))
+            {
+
+                int newVar = PlayerPrefs.GetInt("money");
+                newVar += 1;
+                PlayerPrefs.SetInt("money", newVar);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("money", 1);
+            }
+            coinCount = PlayerPrefs.GetInt("money"); 
+            Debug.Log(coinCount);
             PlayCoinSound();
         }
 
-        private void UpdateCoinText()
+        /*private void UpdateCoinText()
         {
             if (coinText != null)
             {
                 coinText.text = "Coins: " + coinCount.ToString();
             }
-        }
+        }*/
 
         private void PlayCoinSound()
         {
