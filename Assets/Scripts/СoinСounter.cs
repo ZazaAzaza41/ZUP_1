@@ -8,33 +8,34 @@ namespace Assets.Scripts
 
         private int coinCount = 0;
         public TextMeshProUGUI coinText;
+        public TextMeshProUGUI coinRecord;
 
         public AudioClip coinSound;
         private AudioSource audioSource;
 
         void Start()
-        {
-            UpdateCoinText();
+        {          
             audioSource = gameObject.AddComponent<AudioSource>();
         }
 
         public void AddCoin()
         {
-            
+            coinCount++;
+
             if (PlayerPrefs.HasKey("money"))
             {
-
-                int newVar = PlayerPrefs.GetInt("money");
-                newVar += 1;
-                PlayerPrefs.SetInt("money", newVar);
+                if (coinCount > PlayerPrefs.GetInt("money"))
+                {
+                    PlayerPrefs.SetInt("money", coinCount);
+                }             
             }
             else
             {
-                PlayerPrefs.SetInt("money", 1);
+                PlayerPrefs.SetInt("money", coinCount);
             }
-            
-            Debug.Log(PlayerPrefs.GetInt("money"));
             PlayCoinSound();
+            UpdateCoinText();
+            UpdateCoinRecordText();
         }
 
         private void UpdateCoinText()
@@ -42,6 +43,14 @@ namespace Assets.Scripts
             if (coinText != null)
             {
                 coinText.text = "Coins: " + coinCount.ToString();
+            }
+        }
+
+        private void UpdateCoinRecordText()
+        {
+            if (coinText != null)
+            {
+                coinRecord.text = "SCORE: " + PlayerPrefs.GetInt("money").ToString();
             }
         }
 

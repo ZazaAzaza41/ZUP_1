@@ -107,6 +107,6 @@ public class CameraRotationButton : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("ZK2_0");
+        SceneManager.LoadScene("SampleScene");
     }
 }

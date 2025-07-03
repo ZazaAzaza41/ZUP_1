@@ -56,7 +56,7 @@ public class SpawnObstacles : MonoBehaviour
             Destroy(spawnedObject3, livetime + timespawn - 0.1f);
 
             obj = UnityEngine.Random.Range(0, kolobstacles);
-            GameObject spawnedObject11 = Instantiate(objectlist[obj], new Vector3(x, y + UnityEngine.Random.Range(miny, miny), z), Quaternion.identity, transform);
+            GameObject spawnedObject11 = Instantiate(objectlist[obj], new Vector3(x, y + UnityEngine.Random.Range(miny, maxy), z), Quaternion.identity, transform);
             Destroy(spawnedObject11, livetime + timespawn - 0.1f);
             obj = UnityEngine.Random.Range(0, kolobstacles);
             GameObject spawnedObject22 = Instantiate(objectlist[obj], new Vector3(0, y + UnityEngine.Random.Range(miny, maxy), z), Quaternion.identity, transform);
