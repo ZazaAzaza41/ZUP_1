@@ -179,10 +179,6 @@ namespace Assets.Scripts
                 }
                 
             }
-            else if(other.CompareTag("Ring"))
-            {
-                animator.SetTrigger("Acceleration");
-            }
         }
         void GameStop()
         {
