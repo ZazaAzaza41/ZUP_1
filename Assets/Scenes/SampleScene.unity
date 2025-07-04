@@ -3697,7 +3697,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089217116426516594, guid: 8c70b2b2d960e824696a608e86549c1a, type: 3}
       propertyPath: field of view
-      value: 88.13013
+      value: 79.26495
       objectReference: {fileID: 0}
     - target: {fileID: 1089217116426516594, guid: 8c70b2b2d960e824696a608e86549c1a, type: 3}
       propertyPath: m_FocalLength
