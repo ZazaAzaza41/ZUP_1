@@ -70,6 +70,10 @@ namespace Assets.Scripts
         public GameObject frameGameUI;
         public GameObject framePause;
 
+        [Header("Звук столкновения")]
+        public AudioClip ObstacleSound;
+        private AudioSource audioSource;
+
         private Rigidbody rb;
         private bool isGrounded;
         private float currentSpeed;
@@ -86,7 +90,7 @@ namespace Assets.Scripts
         {
 
             rb = GetComponent<Rigidbody>();
-            //rb.freezeRotation = true;
+            rb.freezeRotation = true;
 
             baseSpeed = 10;
             acceleration = 2f;
@@ -119,6 +123,8 @@ namespace Assets.Scripts
             UpdateFuelUI();
             UpdateHPUI();
 
+            audioSource = gameObject.AddComponent<AudioSource>();
+
             if (startButton != null)
             {
                 startButton.onClick.AddListener(StartGame);
@@ -135,7 +141,13 @@ namespace Assets.Scripts
             currentSpeed = baseSpeed;  // Возвращаем базовую скорость
             rb.isKinematic = false; //Включаем физику
         }
-
+        private void PlayObstacleSound()
+        {
+            if (ObstacleSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(ObstacleSound);
+            }
+        }
         private void CheckGrounded()
         {
             Vector3 boxCenter = transform.position;
@@ -155,6 +167,7 @@ namespace Assets.Scripts
             if (other.CompareTag("Obstacle"))
             {
                 ChangeHP();
+                PlayObstacleSound();
                 int anim = UnityEngine.Random.Range(1, 3);
                 if (anim == 1)
                 {
