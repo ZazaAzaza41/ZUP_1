@@ -74,6 +74,10 @@ namespace Assets.Scripts
         public AudioClip ObstacleSound;
         private AudioSource audioSource;
 
+        /*[Header("Музыка игры")]
+        public AudioClip GameMusic;
+        private AudioSource audioSourceGameMusic;*/
+
         private Rigidbody rb;
         private bool isGrounded;
         private float currentSpeed;
@@ -88,6 +92,7 @@ namespace Assets.Scripts
 
         private void Awake()
         {
+            
 
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
@@ -112,6 +117,9 @@ namespace Assets.Scripts
             outOfBoundsFuelBurnMultiplier = 33.3f;
 
             maxHP = 5f;
+            audioSource = gameObject.AddComponent<AudioSource>();
+            //audioSourceGameMusic = gameObject.AddComponent<AudioSource>();
+
         }
 
         void Start()
@@ -122,9 +130,7 @@ namespace Assets.Scripts
             currentHP = maxHP;
             UpdateFuelUI();
             UpdateHPUI();
-
-            audioSource = gameObject.AddComponent<AudioSource>();
-
+                
             if (startButton != null)
             {
                 startButton.onClick.AddListener(StartGame);
