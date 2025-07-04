@@ -10,6 +10,7 @@ TagManager:
   - Platform1
   - Obstacle
   - Coin
+  - Ring
   layers:
   - Default
   - TransparentFX
