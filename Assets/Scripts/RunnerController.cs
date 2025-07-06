@@ -185,6 +185,11 @@ namespace Assets.Scripts
                 }
                 
             }
+            else if (other.CompareTag("HP"))
+            {
+                currentHP += 1f;
+                Destroy(other.gameObject);
+            }
         }
         void GameStop()
         {
